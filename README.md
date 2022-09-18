@@ -1,2 +1,2 @@
-# stream-remote
-A web interface for remotely controlling cameras and slides for a live stream.
+# booth-remote
+A web interface for remotely controlling the hardware in an A/V booth.

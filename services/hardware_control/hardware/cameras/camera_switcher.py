@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""Support for hardware camera switchers."""
-# Part of Stream Remote (https://github.com/whutch/stream-remote)
-# :copyright: (c) 2021 Will Hutcheson
-# :license: MIT (https://github.com/whutch/stream-remote/blob/main/LICENSE.txt)
+"""Support for camera switcher hardware."""
+# Part of Booth Remote (https://github.com/whutch/booth-remote)
+# :copyright: (c) 2022 Will Hutcheson
+# :license: MIT (https://github.com/whutch/booth-remote/blob/main/LICENSE.txt)
 
 from enum import Enum
 
