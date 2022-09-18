@@ -8,6 +8,8 @@ ipython = "*"
 
 [packages]
 django = "4.0"
+pyatemmax = "==1.0b4"
+requests = "*"
 
 [requires]
 python_version = "3.10"
