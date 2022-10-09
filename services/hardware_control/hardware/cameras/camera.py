@@ -4,7 +4,10 @@
 # :copyright: (c) 2022 Will Hutcheson
 # :license: MIT (https://github.com/whutch/booth-remote/blob/main/LICENSE.txt)
 
+from datetime import datetime
 import socket
+
+import requests
 
 
 CAMERAS = {
@@ -49,3 +52,36 @@ def send_inquiry(camera, msg):
     response = get_response(sock)
     sock.close()
     return response
+
+
+def recall(camera, preset):
+    msg = b"\x81\x01\x04\x3F\x02"
+    msg += bytes((preset,))
+    msg += b"\xFF"
+    send_command(camera, msg)
+
+
+def store(camera, preset):
+    msg = b"\x81\x01\x04\x3F\x01"
+    msg += bytes((preset,))
+    msg += b"\xFF"
+    send_command(camera, msg)
+
+
+def clear(camera, preset):
+    msg = b"\x81\x01\x04\x3F\x00"
+    msg += bytes((preset,))
+    msg += b"\xFF"
+    send_command(camera, msg)
+
+
+def get_still(camera, path=None):
+    if not path:
+        now = datetime.now()
+        timestamp = now.strftime("%Y%m%d-%H%M%S")
+        path = f"snapshot-{timestamp}.jpg"
+    ip = CAMERAS[camera]
+    response = requests.get(f"http://{ip}/snapshot.jpg", stream=True)
+    with open(path, "wb") as f:
+        for chunk in response:
+            f.write(chunk)
